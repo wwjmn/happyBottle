@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>填涂小瓶子</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <!-- 瓶子填涂页 -->
+    <!-- 整个画布 -->
+    <div class="all">
+        <!-- 封面 -->
+        <div class="cardNav" id="covercardNav">
+            <div class="cover">
+                <div class="info">请选择一个卡片开始填涂</div>
+                <nav>
+                    <ul>
+                        <li><a href="#card1">快乐源泉小瓶子</a></li>
+                        <li><a href="#card2">喜好小瓶子</a></li>
+                        <li><a href="#card3">安心小瓶子</a></li>
+                        <li><a href="#card4">追星小瓶子</a></li>
+                        <li><a href="#card5">2020电影小瓶子</a></li>
+                    </ul>
+                </nav>
+                <button id="yesButton">确定</button>
+            </div>
+        </div>
+        <!-- 主页面 -->
+        <div class="wrapper clearfix" id="wrapper">
+            <!-- 卡片选择导航栏+卡片区 -->
+            <div class="leftPart clearfix fl">
+                <!-- 选择不同卡片的导航栏 -->
+                <div class="cardNav">
+                    <nav>
+                        <ul>
+                            <li><button><a href="#card1">快乐源泉小瓶子</a></button></li>
+                            <li><button><a href="#card2">喜好小瓶子</a></button></li>
+                            <li><button><a href="#card3">安心小瓶子</a></button></li>
+                            <li><button><a href="#card4">追星小瓶子</a></button></li>
+                            <li><button><a href="#card5">2020电影小瓶子</a></button></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- 卡片区 -->
+                <div id="cardPart">
+                    <!-- 卡片1 -->
+                    <div id="card1" class="card">
+                        <div class="cardName">快乐源泉瓶子</div>
+                        <!-- 瓶子放置区ul -->
+                        <!-- <ul id="wrapperUl" class="wrapperUl">
+                            每个瓶子li
+                            <li class="bottle1 bottlePart">
+                                <div class="bottle">
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                <div class="tag">tagname</div>
+                            </li>
+                        </ul> -->
+                    </div>
+                    <!-- 卡片2 -->
+                    <div id="card2" class="card">
+                        <div class="cardName">喜好小瓶子</div>
+                    </div>
+                    <!-- 卡片3 -->
+                    <div id="card3" class="card">
+                        <div class="cardName">安心小瓶子</div>
+                    </div>
+                    <div id="card4" class="card">
+                        <div class="cardName">追星小瓶子</div>
+                    </div>
+                    <div id="card5" class="card">
+                        <div class="cardName">2020电影小瓶子</div>
+                    </div>
+                    <!-- 自定义卡片 -->
+
+                </div>
+            </div>
+            <!-- 功能按钮区 -->
+            <div class="buttonPart fr">
+                <button id="newCard" class="button">自定义一个填涂卡</button>
+                <button id="delCard" class="button">删除自定义填涂卡</button>
+                <button id="addBottle" class="button">增加一个瓶子</button>
+                <button id="delBottle" class="button">删除最后一个瓶子</button>
+                <button id="alterColor" class="button">更换配色</button>
+                <button id='saveButton' class="button"><a href="#" class="down" download="downImg">保存</a></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 保存图片功能 -->
+    <script src="./js/html2canvas.js"></script>
+
+    <!-- 基本功能逻辑区 -->
+    <script src="./js/index.js"></script>
+    <script src="./js/use.js"></script>
+</body>
+
+</html>

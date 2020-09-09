@@ -1,0 +1,90 @@
+* {
+	margin: 0;
+	padding: 0;
+
+}
+body {
+	/*  字 大小/行高           字体                 宋体的unicode编码*/
+	font: 12px/1.5 arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+	color: #3c3c3c;
+	background-color:  var(--color-3);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: normal;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+	/*使图片底部无空白*/
+}
+
+a {
+	text-decoration: none;
+	color: #266ab8;
+}
+
+i {
+	font-style: normal;
+	/*字体*/
+}
+
+/* 清楚文本框样式 */
+input {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	outline-offset: 0;
+	width: 72px;
+	height: 32px;
+	font-size: 20px;
+}
+
+button {
+	border: none;
+	outline: none;
+	outline-offset: 0;
+	background: transparent;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	/*边框模式，合并的模式*/
+}
+
+th,
+td {
+	padding: 0;
+}
+
+/*清除浮动三件套*/
+.clearfix:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.layer {
+	width: 1280px;
+	margin: 0 auto;
+}
