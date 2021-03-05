@@ -292,17 +292,18 @@
 
 .author{
     width: 200px;
-    background-color: var(--color-1);
-    color: var(--color-txt-2);
     text-align: center;
-    
     position: absolute;
     bottom: 30px;
- 
-    left: 100px;
+    left: 80px;
     
 }
 .author a{
-    color: var(--color-txt-1);
-    text-decoration: none;
+    margin-left: 10px;
+    color: var(--color-txt-2);
+    text-decoration: underline;
+}
+.author a:hover{
+    background-color: var(--color-2);
+
 }
