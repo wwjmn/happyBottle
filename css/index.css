@@ -6,8 +6,8 @@
     --color-2: #5b7fa7;
     --color-3: #B3DBFE;
 
-    --color-txt-1:#fcfcfc;
-    --color-txt-2:#032643;
+    --color-txt-1: #fcfcfc;
+    --color-txt-2: #032643;
 }
 
 /* .all2{
@@ -17,12 +17,6 @@
 } */
 
 
-/* 整个画布 */
-.wrapper {
-    width: 100%;
-    height: 900px;
-    position: relative;
-}
 
 /* 封面 */
 #covercardNav {
@@ -30,16 +24,17 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; 
+    height: 100vh;
     background: var(--color-1);
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #covercardNav .cover {
     width: 300px;
     height: 600px;
-    margin: auto;
-    margin-top: 120px;
     /* background: rgb(136, 96, 96); */
 }
 
@@ -108,22 +103,25 @@
     color: var(--color-txt-1);
 }
 
-.wrapper{
-    width: 1304px;
+.wrapper {
+    /* width: 100vw; */
     display: none;
-}
-/* 选择小瓶子导航栏 */
-.wrapper .leftPart{
-    width: 1056px;
-}
-.wrapper .leftPart .cardNav {
-    float: left;
-    margin-top: 80px;
-    margin-left: 120px;
-    width: 166px;
+    margin: 0 auto;
 }
 
-.wrapper .leftPart .cardNav li button {
+/* 选择小瓶子导航栏 */
+/* .wrapper {
+    width: 1056px;
+} */
+.wrapper .cardNav {
+    
+    width: 166px;
+    position: fixed;
+    top: 80px;
+    left: 40px;
+}
+
+.wrapper .cardNav li button {
     width: 166px;
     height: 40px;
     margin-bottom: 20px;
@@ -141,38 +139,38 @@
     cursor: pointer;
 }
 
-.wrapper .leftPart .cardNav li button a {
+.wrapper .cardNav li button a {
     display: inline-block;
     width: 166px;
     height: 40px;
     border-radius: 8px;
     color: var(--color-txt-2);
 }
-.wrapper .leftPart .cardNav li button:hover a{
+
+.wrapper .cardNav li button:hover a {
     text-shadow: 0 0 20px #fff;
     color: var(--color-txt-1);
 }
+
 /* 比如已经选中卡片1，则其他链接变色并且失去链接效果 */
-.wrapper .leftPart .cardNav li button a.here:link,
-.wrapper .leftPart .cardNav li button a.here:visited,
-.wrapper .leftPart .cardNav li button a.here.hover,
-.wrapper .leftPart .cardNav li button a.here.active {
+.wrapper .cardNav li button a.here:link,
+.wrapper .cardNav li button a.here:visited,
+.wrapper .cardNav li button a.here.hover,
+.wrapper .cardNav li button a.here.active {
     text-shadow: 0 0 20px #fff;
     color: var(--color-txt-1);
 }
 
 /* 整个卡片部分区 */
 .wrapper #cardPart {
-    float: right;
     width: 688px;
-
-    margin-top: 40px;
+    margin: 60px auto;
 }
 
 /* 瓶子放置区 */
 /* 卡片 */
 .wrapper #cardPart .card {
-    
+
     width: 688px;
     height: 752px;
     background-color: var(--color-2);
@@ -228,7 +226,7 @@
     width: 72px;
     height: 32px;
     font-size: 18px;
-    font-family: "Comic Sans MS",'Hiragino Sans GB', sans-serif;
+    font-family: "Comic Sans MS", 'Hiragino Sans GB', sans-serif;
     text-align: center;
     line-height: 18px;
     margin-top: 4px;
@@ -245,9 +243,9 @@
 .wrapper .buttonPart {
     width: 166px;
     height: 256px;
-    /* background-color: #ccc; */
-    margin-top: 80px;
-
+    position: fixed;
+    top: 80px;
+    right: 40px;
 }
 
 .wrapper .buttonPart .button {
@@ -287,24 +285,26 @@
 }
 
 /* 新卡片 */
-#cardNew .cardName:hover{
+#cardNew .cardName:hover {
     cursor: pointer;
 }
 
-.author{
+.author {
     width: 200px;
     text-align: center;
     position: fixed;
     bottom: 30px;
     left: 80px;
-    
+
 }
-.author a{
+
+.author a {
     margin-left: 10px;
     color: var(--color-txt-2);
     text-decoration: underline;
 }
-.author a:hover{
+
+.author a:hover {
     background-color: var(--color-2);
 
 }
