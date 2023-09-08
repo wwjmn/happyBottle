@@ -102,7 +102,7 @@ function addWater(bottleLi) {
             this_.innerHTML = this.value == oldhtml ? oldhtml : this.value;
             //当触发时判断新增元素值是否为空，为空则不修改，并返回原有值 
         }
-        //为新增元素添加回车后，失去焦点事件
+        //为新增元素添加回车后，失去焦点事件?????
 
         this.innerHTML = ''; //设置该标签的子节点为空
         this.appendChild(newobj); //添加该标签的子节点，input对象
@@ -189,7 +189,7 @@ function addCard() {
     var delCard = document.getElementById("delCard");
     newCard.onclick = function () {
 
-        // 点击新建按钮后
+        // 点击自定义一个填涂卡按钮后
         // 1.弹出输入卡片名字对话框
         var cardIdName, num;
         cardIdName = prompt("请输入卡片名（8个字以内）：");
@@ -319,19 +319,7 @@ function addBottle() {
     var addbottle = document.getElementById("addBottle");
     addbottle.onclick = function () {
         // 获得当前card
-        var card = document.getElementsByClassName("card");
-        var thiscard;
-        for (var i = 0; i < card.length; i++) {
-            if (card[i].style.display == "block") {
-                thiscard = card[i];
-                break;
-            }
-        }
-        // 如果当前没有卡片
-        if (thiscard == null) {
-            alert("请先选择一个卡片或者新建一个卡片哦～");
-            return;
-        }
+        var thiscard = currentCard()[0];
         var thiscardBottleNum = thiscard.getElementsByTagName('li').length;
         if (thiscardBottleNum > 100) {
             alert("瓶子数量已大于上限！");
@@ -351,20 +339,8 @@ function delBottle() {
     var delbottle = document.getElementById("delBottle");
     delbottle.onclick = function () {
         // 获得当前card
-        var card = document.getElementsByClassName("card");
-        var thiscard;
-        var thiscardUl;
-        for (var i = 0; i < card.length; i++) {
-            if (card[i].style.display == "block") {
-                thiscard = card[i];
-                thiscardUl = thiscard.getElementsByClassName("wrapperUl")[0];
-                break;
-            }
-        }
-        if (thiscard == null) {
-            alert("请先选择一个卡片或者新建一个卡片哦～");
-            return;
-        }
+        var thiscard = currentCard()[0];
+        var thiscardUl = currentCard()[1];
 
         if (thiscardUl.lastChild) {
             thiscardUl.removeChild(thiscardUl.lastChild);
@@ -378,52 +354,32 @@ function delBottle() {
         thiscard.style.height = (96 + 164 * Math.ceil((thisCardBottleNum / 6))) + "px";
     }
 }
-
 // 点击保存生成一张图
 function saveButton() {
     var savebutton = document.getElementById('saveButton');
     savebutton.onclick = function () {
 
         // 获得当前card
-        var card = document.getElementsByClassName("card");
-        var thiscard;
-        var thiscardUl;
-        for (var i = 0; i < card.length; i++) {
-            if (card[i].style.display == "block") {
-                thiscard = card[i];
-                thiscardUl = thiscard.getElementsByClassName("wrapperUl")[0];
-                break;
-            }
-        }
-        if (thiscard == null) {
-            alert("请先选择一个卡片或者新建一个卡片哦～");
-            return;
-        }
+        var thiscard = currentCard()[0];
 
-        // 生成一张图片(有些不稳定)
-        //创建一个新的canvas
-        var canvas2 = document.createElement("canvas");
-        let _canvas = document.querySelector('div');
-        var w = parseInt(window.getComputedStyle(_canvas).width);
-        var h = parseInt(window.getComputedStyle(_canvas).height);
-        //将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
-        canvas2.width = w * 2;
-        canvas2.height = h * 2;
-        canvas2.style.width = w + "px";
-        canvas2.style.height = h + "px";
-        //可以按照自己的需求，对context的参数修改,translate指的是偏移量
-        //  var context = canvas.getContext("2d");
-        //  context.translate(0,0);
-        var context = canvas2.getContext("2d");
-        context.scale(2, 2);
+        // const that = this
+        const node = document.getElementById(thiscard.id) // 通过id获取dom
+        // console.log(node, 'node')
+        domtoimage
+            .toPng(node)
+            .then((dataUrl) => {
+                //输出图片的Base64,dataUrl
+                // 下载到PC 
+                const a = document.createElement('a') // 生成一个a元素
+                const event = new MouseEvent('click') // 创建一个单击事件
+                a.download = '填涂瓶子' // 设置图片名称没有设置则为默认
+                a.href = dataUrl // 将生成的URL设置为a.href属性
+                a.dispatchEvent(event) // 触发a的单击事件
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error)
+            })
 
-        html2canvas(document.querySelector("#" + thiscard.id)).then(function (canvas) {
-
-            // savePart.appendChild(canvas);
-            //canvas转换成url，然后利用a标签的download属性，直接下载，绕过上传服务器再下载
-            document.querySelector(".down").setAttribute('href', canvas.toDataURL());
-        });
-        // alert('图片正在保存到默认文件夹哦～');
     }
 }
 
@@ -431,6 +387,7 @@ function saveButton() {
 function yesButton() {
     var coverYesButton = document.getElementById('yesButton');
     var covercardNav = document.getElementById('covercardNav');
+    var wrapper = document.getElementById('wrapper');
     coverYesButton.onclick = function () {
         // 获得当前card
         var card = document.getElementsByClassName("card");
@@ -447,8 +404,28 @@ function yesButton() {
             return;
         } else {
             covercardNav.style.display = 'none';
-
+            wrapper.style.display = 'block';
         }
+    }
+}
+// 获得当前card
+function currentCard() {
+    var card = document.getElementsByClassName("card");
+    var thiscard;
+    var thiscardUl;
+    for (var i = 0; i < card.length; i++) {
+        if (card[i].style.display == "block") {
+            thiscard = card[i];
+            thiscardUl = thiscard.getElementsByClassName("wrapperUl")[0];
+            break;
+        }
+    }
+
+    if (thiscard == null) {
+        alert("请先选择一个卡片或者新建一个卡片哦～");
+        return;
+    } else {
+        return [thiscard, thiscardUl];
     }
 }
 
